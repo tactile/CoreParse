@@ -7,6 +7,7 @@
 //
 
 #import "CPShiftReduceGotoTable.h"
+#import "CPRule.h"
 
 
 @implementation CPShiftReduceGotoTable
@@ -82,7 +83,7 @@
 
 - (NSUInteger)gotoForState:(NSUInteger)state rule:(CPRule *)rule
 {
-    return [(NSNumber *)[table[state] objectForKey:[rule name]] unsignedIntegerValue];
+	return [(NSNumber *)[table[state] objectForKey:[rule name]] unsignedIntegerValue];
 }
 
 @end
