@@ -125,13 +125,13 @@
     return YES;
 }
 
-- (NSArray *)tokeniser:(CPTokeniser *)tokeniser willProduceToken:(CPToken *)token
+- (void)tokeniser:(CPTokeniser *)tokeniser requestsToken:(CPToken *)token pushedOntoStream:(CPTokenStream *)stream
 {
     if ([token isWhiteSpaceToken])
     {
-        return [NSArray array];
+        [stream pushTokens:[NSArray array]];
     }
-    return [NSArray arrayWithObject:token];
+    [stream pushTokens:[NSArray arrayWithObject:token]];
 }
 
 - (id)parser:(CPParser *)parser didProduceSyntaxTree:(CPSyntaxTree *)syntaxTree
