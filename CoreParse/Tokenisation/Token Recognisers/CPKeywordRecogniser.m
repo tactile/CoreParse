@@ -13,6 +13,11 @@
 @synthesize keyword;
 @synthesize invalidFollowingCharacters;
 
++ (BOOL)supportsSecureCoding
+{
+    return YES;
+}
+
 + (id)recogniserForKeyword:(NSString *)keyword
 {
     return [[[self alloc] initWithKeyword:keyword] autorelease];
@@ -55,8 +60,8 @@
     
     if (nil != self)
     {
-        [self setKeyword:[aDecoder decodeObjectForKey:CPKeywordRecogniserKeywordKey]];
-        [self setInvalidFollowingCharacters:[aDecoder decodeObjectForKey:CPKeywordRecogniserInvalidFollowingCharactersKey]];
+        [self setKeyword:[aDecoder decodeObjectOfClass:[NSString class] forKey:CPKeywordRecogniserKeywordKey]];
+        [self setInvalidFollowingCharacters:[aDecoder decodeObjectOfClass:[NSCharacterSet class] forKey:CPKeywordRecogniserInvalidFollowingCharactersKey]];
     }
     
     return self;

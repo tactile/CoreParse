@@ -12,6 +12,11 @@
 
 @implementation CPWhiteSpaceRecogniser
 
++ (BOOL)supportsSecureCoding
+{
+    return YES;
+}
+
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     return [super init];

@@ -13,7 +13,7 @@
 #import "CPToken.h"
 #import "CPGrammar.h"
 
-@interface CPShiftReduceActionTable : NSObject <NSCoding>
+@interface CPShiftReduceActionTable : NSObject <NSSecureCoding>
 {}
 
 - (id)initWithCapacity:(NSUInteger)capacity;

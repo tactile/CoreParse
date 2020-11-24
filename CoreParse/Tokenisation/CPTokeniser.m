@@ -11,6 +11,13 @@
 #import "CPEOFToken.h"
 #import "CPErrorToken.h"
 
+#import "CPIdentifierRecogniser.h"
+#import "CPKeywordRecogniser.h"
+#import "CPNumberRecogniser.h"
+#import "CPQuotedRecogniser.h"
+#import "CPRegexpRecogniser.h"
+#import "CPWhiteSpaceRecogniser.h"
+
 typedef struct
 {
     unsigned int shouldConsumeToken:1;
@@ -38,6 +45,11 @@ typedef struct
 @synthesize tokenRecognisers;
 @synthesize delegate;
 
++ (BOOL)supportsSecureCoding
+{
+    return YES;
+}
+
 - (id)init
 {
     self = [super init];
@@ -58,7 +70,7 @@ typedef struct
     
     if (nil != self)
     {
-        [self setTokenRecognisers:[aDecoder decodeObjectForKey:CPTokeniserTokenRecognisersKey]];
+        [self setTokenRecognisers:[aDecoder decodeObjectOfClasses:[[NSSet alloc] initWithArray:@[[NSArray class], [CPIdentifierRecogniser class], [CPKeywordRecogniser class], [CPNumberRecogniser class], [CPQuotedRecogniser class], [CPRegexpRecogniser class], [CPWhiteSpaceRecogniser class]]] forKey:CPTokeniserTokenRecognisersKey]];
     }
     
     return self;

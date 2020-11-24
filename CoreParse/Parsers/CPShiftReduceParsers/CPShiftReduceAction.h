@@ -12,7 +12,7 @@
 
 #import "CPGrammar.h"
 
-@interface CPShiftReduceAction : NSObject <NSCoding>
+@interface CPShiftReduceAction : NSObject <NSSecureCoding>
 
 + (id)shiftAction:(NSUInteger)shiftLocation;
 + (id)reduceAction:(CPRule *)reduction;

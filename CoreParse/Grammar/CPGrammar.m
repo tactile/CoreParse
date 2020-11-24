@@ -195,7 +195,10 @@
     {
         [stream pushTokens:[NSArray array]];
     }
-    [stream pushTokens:[NSArray arrayWithObject:token]];
+    else
+    {
+        [stream pushTokens:[NSArray arrayWithObject:token]];
+    }
 }
 
 @end
@@ -203,6 +206,11 @@
 @implementation CPGrammar
 
 @synthesize start;
+
++ (BOOL)supportsSecureCoding
+{
+    return YES;
+}
 
 + (id)grammarWithStart:(NSString *)start rules:(NSArray *)rules
 {
@@ -354,8 +362,8 @@
     
     if (nil != self)
     {
-        [self setStart:[aDecoder decodeObjectForKey:CPGrammarStartKey]];
-        [self setRules:[aDecoder decodeObjectForKey:CPGrammarRulesKey]];
+        [self setStart:[aDecoder decodeObjectOfClass:[NSString class] forKey:CPGrammarStartKey]];
+        [self setRules:[aDecoder decodeObjectOfClasses:[[NSSet alloc] initWithArray:@[[NSArray class], [CPRule class]]] forKey:CPGrammarRulesKey]];
     }
     
     return self;

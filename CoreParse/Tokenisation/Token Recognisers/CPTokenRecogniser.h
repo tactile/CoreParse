@@ -13,7 +13,7 @@
 /**
  * The CPTokenRecogniser protocol defines methods needed to recognise tokens in a string.
  */
-@protocol CPTokenRecogniser <NSObject, NSCoding>
+@protocol CPTokenRecogniser <NSObject, NSSecureCoding>
 
 @required
 /**

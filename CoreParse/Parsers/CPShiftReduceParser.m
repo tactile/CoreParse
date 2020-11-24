@@ -32,6 +32,11 @@
 @synthesize actionTable;
 @synthesize gotoTable;
 
++ (BOOL)supportsSecureCoding
+{
+    return YES;
+}
+
 - (id)initWithGrammar:(CPGrammar *)grammar
 {
     self = [super initWithGrammar:grammar];
@@ -55,12 +60,12 @@
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super initWithGrammar:[aDecoder decodeObjectForKey:CPShiftReduceParserGrammarKey]];
+    self = [super initWithGrammar:[aDecoder decodeObjectOfClass:[CPGrammar class] forKey:CPShiftReduceParserGrammarKey]];
     
     if (nil != self)
     {
-        [self setActionTable:[aDecoder decodeObjectForKey:CPShiftReduceParserActionTableKey]];
-        [self setGotoTable:[aDecoder decodeObjectForKey:CPShiftReduceParserGotoTableKey]];
+        [self setActionTable:[aDecoder decodeObjectOfClass:[CPShiftReduceActionTable class] forKey:CPShiftReduceParserActionTableKey]];
+        [self setGotoTable:[aDecoder decodeObjectOfClass:[CPShiftReduceGotoTable class] forKey:CPShiftReduceParserGotoTableKey]];
     }
     
     return self;

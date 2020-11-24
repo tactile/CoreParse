@@ -10,7 +10,7 @@
 
 @class CPRule;
 
-@interface CPShiftReduceGotoTable : NSObject <NSCoding>
+@interface CPShiftReduceGotoTable : NSObject <NSSecureCoding>
 {}
 
 - (id)initWithCapacity:(NSUInteger)capacity;
