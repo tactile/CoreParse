@@ -16,6 +16,11 @@
     NSUInteger capacity;
 }
 
++ (BOOL)supportsSecureCoding
+{
+    return YES;
+}
+
 - (id)initWithCapacity:(NSUInteger)initCapacity
 {
     self = [super init];
@@ -41,7 +46,7 @@
     
     if (nil != self)
     {
-        NSArray *rows = [aDecoder decodeObjectForKey:CPShiftReduceGotoTableTableKey];
+        NSArray *rows = [aDecoder decodeObjectOfClasses:[[NSSet alloc] initWithArray:@[[NSArray class], [NSDictionary class]]] forKey:CPShiftReduceGotoTableTableKey];
         capacity = [rows count];
         table = malloc(capacity * sizeof(NSMutableDictionary *));
         [rows getObjects:table range:NSMakeRange(0, capacity)];

@@ -131,7 +131,10 @@
     {
         [stream pushTokens:[NSArray array]];
     }
-    [stream pushTokens:[NSArray arrayWithObject:token]];
+    else
+    {
+        [stream pushTokens:[NSArray arrayWithObject:token]];
+    }
 }
 
 - (id)parser:(CPParser *)parser didProduceSyntaxTree:(CPSyntaxTree *)syntaxTree

@@ -22,6 +22,11 @@
 @synthesize tag;
 @synthesize representitiveClass;
 
++ (BOOL)supportsSecureCoding
+{
+    return YES;
+}
+
 - (NSArray *)rightHandSideElements
 {
     return [[rightHandSide retain] autorelease];
@@ -103,9 +108,9 @@
     if (nil != self)
     {
         [self setTag:[aDecoder decodeIntegerForKey:CPRuleTagKey]];
-        [self setName:[aDecoder decodeObjectForKey:CPRuleNameKey]];
-        [self setRightHandSideElements:[aDecoder decodeObjectForKey:CPRuleRHSElementsKey]];
-        [self setRepresentitiveClass:NSClassFromString([aDecoder decodeObjectForKey:CPRuleRepresentitiveClassKey])];
+        [self setName:[aDecoder decodeObjectOfClass:[NSString class] forKey:CPRuleNameKey]];
+        [self setRightHandSideElements:[aDecoder decodeObjectOfClasses:[[NSSet alloc] initWithArray:@[[NSArray class], [CPGrammarSymbol class]]] forKey:CPRuleRHSElementsKey]];
+        [self setRepresentitiveClass:NSClassFromString([aDecoder decodeObjectOfClass:[NSString class] forKey:CPRuleRepresentitiveClassKey])];
     }
     
     return self;

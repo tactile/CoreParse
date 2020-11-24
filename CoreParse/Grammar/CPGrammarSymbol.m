@@ -13,6 +13,11 @@
 @synthesize name;
 @synthesize terminal;
 
++ (BOOL)supportsSecureCoding
+{
+    return YES;
+}
+
 + (id)nonTerminalWithName:(NSString *)name
 {
     return [[[self alloc] initWithName:name isTerminal:NO] autorelease];
@@ -50,7 +55,7 @@
     
     if (nil != self)
     {
-        [self setName:[aDecoder decodeObjectForKey:CPGrammarSymbolNameKey]];
+        [self setName:[aDecoder decodeObjectOfClass:[NSString class] forKey:CPGrammarSymbolNameKey]];
         [self setTerminal:[aDecoder decodeBoolForKey:CPGrammarSymbolTerminalKey]];
     }
     

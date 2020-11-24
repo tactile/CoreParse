@@ -30,6 +30,11 @@ ActionDetails;
     ActionDetails details;
 }
 
++ (BOOL)supportsSecureCoding
+{
+    return YES;
+}
+
 + (id)shiftAction:(NSUInteger)shiftLocation
 {
     return [[[self alloc] initWithShift:shiftLocation] autorelease];
@@ -100,7 +105,7 @@ ActionDetails;
                 details.shift = [aDecoder decodeIntegerForKey:CPShiftReduceActionShiftKey];
                 break;
             case kActionTypeReduce:
-                details.reductionRule = [[aDecoder decodeObjectForKey:CPShiftReduceActionRuleKey] retain];
+                details.reductionRule = [[aDecoder decodeObjectOfClass:[CPRule class] forKey:CPShiftReduceActionRuleKey] retain];
             case kActionTypeAccept:
             default:
                 break;

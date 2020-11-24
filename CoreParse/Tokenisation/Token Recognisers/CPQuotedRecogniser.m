@@ -19,6 +19,11 @@
 @synthesize maximumLength;
 @synthesize name;
 
++ (BOOL)supportsSecureCoding
+{
+    return YES;
+}
+
 + (id)quotedRecogniserWithStartQuote:(NSString *)startQuote endQuote:(NSString *)endQuote name:(NSString *)name
 {
     return [CPQuotedRecogniser quotedRecogniserWithStartQuote:startQuote endQuote:endQuote escapeSequence:nil name:name];
@@ -62,9 +67,9 @@
     
     if (nil != self)
     {
-        [self setStartQuote:[aDecoder decodeObjectForKey:CPQuotedRecogniserStartQuoteKey]];
-        [self setEndQuote:[aDecoder decodeObjectForKey:CPQuotedRecogniserEndQuoteKey]];
-        [self setEscapeSequence:[aDecoder decodeObjectForKey:CPQuotedRecogniserEscapeSequenceKey]];
+        [self setStartQuote:[aDecoder decodeObjectOfClass:[NSString class] forKey:CPQuotedRecogniserStartQuoteKey]];
+        [self setEndQuote:[aDecoder decodeObjectOfClass:[NSString class] forKey:CPQuotedRecogniserEndQuoteKey]];
+        [self setEscapeSequence:[aDecoder decodeObjectOfClass:[NSString class] forKey:CPQuotedRecogniserEscapeSequenceKey]];
         @try
         {
             [self setMaximumLength:[aDecoder decodeIntegerForKey:CPQuotedRecogniserMaximumLengthKey]];
@@ -74,7 +79,7 @@
             NSLog(@"Warning, value for maximum length too long for this platform, allowing infinite lengths");
             [self setMaximumLength:NSNotFound];
         }
-        [self setName:[aDecoder decodeObjectForKey:CPQuotedRecogniserNameKey]];
+        [self setName:[aDecoder decodeObjectOfClass:[NSString class] forKey:CPQuotedRecogniserNameKey]];
     }
     
     return self;

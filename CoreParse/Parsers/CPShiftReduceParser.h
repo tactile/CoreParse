@@ -15,6 +15,6 @@
  *
  * @warning Note that to create a parser you should use one of CPShiftReduceParser's subclasses.
  */
-@interface CPShiftReduceParser : CPParser <NSCoding>
+@interface CPShiftReduceParser : CPParser <NSSecureCoding>
 
 @end

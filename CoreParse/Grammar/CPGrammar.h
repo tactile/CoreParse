@@ -23,7 +23,7 @@ typedef enum
 /**
  * The CPGrammar class represents a context free grammar.  Grammars can be used later to construct parsers.
  */
-@interface CPGrammar : NSObject <NSCoding>
+@interface CPGrammar : NSObject <NSSecureCoding>
 
 ///---------------------------------------------------------------------------------------
 /// @name Creating and Initialising a Grammar

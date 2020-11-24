@@ -15,6 +15,11 @@
 @synthesize initialCharacters;
 @synthesize identifierCharacters;
 
++ (BOOL)supportsSecureCoding
+{
+    return YES;
+}
+
 + (id)identifierRecogniser
 {
     return [[[CPIdentifierRecogniser alloc] initWithInitialCharacters:nil identifierCharacters:nil] autorelease];
@@ -47,8 +52,8 @@
     
     if (nil != self)
     {
-        [self setInitialCharacters:[aDecoder decodeObjectForKey:CPIdentifierRecogniserInitialCharactersKey]];
-        [self setIdentifierCharacters:[aDecoder decodeObjectForKey:CPIdentifierRecogniserIdentifierCharactersKey]];
+        [self setInitialCharacters:[aDecoder decodeObjectOfClass:[NSCharacterSet class] forKey:CPIdentifierRecogniserInitialCharactersKey]];
+        [self setIdentifierCharacters:[aDecoder decodeObjectOfClass:[NSCharacterSet class] forKey:CPIdentifierRecogniserIdentifierCharactersKey]];
     }
     
     return self;

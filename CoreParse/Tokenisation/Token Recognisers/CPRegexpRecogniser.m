@@ -19,6 +19,11 @@
 @synthesize regexp;
 @synthesize matchHandler;
 
++ (BOOL)supportsSecureCoding
+{
+    return YES;
+}
+
 - (id)initWithRegexp:(NSRegularExpression *)initRegexp matchHandler:(CPRegexpKeywordRecogniserMatchHandler)initMatchHandler
 {
     self = [super init];
@@ -51,7 +56,7 @@
     
     if (nil != self)
     {
-        [self setRegexp:[aDecoder decodeObjectForKey:CPRegexpRecogniserRegexpKey]];
+        [self setRegexp:[aDecoder decodeObjectOfClass:[NSRegularExpression class] forKey:CPRegexpRecogniserRegexpKey]];
     }
     
     return self;

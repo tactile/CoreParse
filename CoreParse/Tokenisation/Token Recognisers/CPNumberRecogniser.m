@@ -18,6 +18,11 @@
 #define CPNumberRecogniserRecognisesIntsKey @"N.i"
 #define CPNumberRecogniserRecognisesFloatsKey @"N.f"
 
++ (BOOL)supportsSecureCoding
+{
+    return YES;
+}
+
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super init];
